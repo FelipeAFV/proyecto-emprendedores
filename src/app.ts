@@ -8,7 +8,7 @@ import helmet from "helmet";
 import {router as authController } from "./routes/auth";
 import cookieParser from "cookie-parser";
 const app = express();
-const port = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 import JWTService from "./services/token/jwt-service";
 import { AppRole } from "./model/enums/app-role";
 import payload_check from "./middlewares/payload_checker"
@@ -67,7 +67,7 @@ console.log(process.cwd());
 console.log(process.env.NODE_ENV);
 app.get("*", (req,res) => res.sendFile(path.join(process.cwd(),'/frontend/dist/proyecto-emprendedores-frontend/index.html')));
 
-app.listen(port,() => console.log("server running..."))
+app.listen(PORT,() => console.log("server running..."))
 
 
  

@@ -47,7 +47,7 @@ var helmet_1 = __importDefault(require("helmet"));
 var auth_1 = require("./routes/auth");
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var app = express_1.default();
-var port = process.env.port || 3000;
+var PORT = process.env.PORT || 3000;
 var jwt_service_1 = __importDefault(require("./services/token/jwt-service"));
 var app_role_1 = require("./model/enums/app-role");
 var payload_checker_1 = __importDefault(require("./middlewares/payload_checker"));
@@ -99,4 +99,4 @@ app.use('/api/adminRoute', role_auth_1.default.checkRole([app_role_1.AppRole.ADM
 console.log(process.cwd());
 console.log(process.env.NODE_ENV);
 app.get("*", function (req, res) { return res.sendFile(path_1.default.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/index.html')); });
-app.listen(port, function () { return console.log("server running..."); });
+app.listen(PORT, function () { return console.log("server running..."); });

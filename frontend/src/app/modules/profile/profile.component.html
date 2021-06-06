@@ -1,0 +1,19 @@
+<div class="main-container">
+    <div class="my-container">
+
+        <div class="my-subcontainer">
+            
+            <h2>Mi perfil</h2>
+            <div class="profile-data">
+                <p>Nombre: {{personName}}</p>
+                <p>Email: {{email}}</p>
+            </div>
+        </div>
+        <div class="my-subcontainer">
+            <router-outlet></router-outlet>
+        </div>
+    </div>  
+
+<button class="my-float-button my-button" (click)="hasProfile(roleToChange)">Modo {{modeToChange}}</button>
+
+</div>

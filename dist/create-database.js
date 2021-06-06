@@ -3,15 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 var typeorm_1 = require("typeorm");
 if (process.env.NODE_ENV == 'production') {
-    console.log('kusdkfjhsdkjfhksjdhfkj');
     typeorm_1.createConnection({
         name: "default",
         type: "mysql",
-        host: "localhost",
+        host: "us-cdbr-east-04.cleardb.com",
         port: 3306,
-        username: "root",
-        password: "",
-        database: "proyecto_emprendedores",
+        username: "b99dd3eec8265c",
+        password: "97895f4a",
+        database: "heroku_7284c192195208d",
         synchronize: true,
         entities: ["dist/model/entity/*.js"]
     }).then(function () {

@@ -67,7 +67,7 @@ console.log(process.cwd());
 console.log(process.env.NODE_ENV);
 app.get("*", (req,res) => res.sendFile(path.join(process.cwd(),'/frontend/dist/proyecto-emprendedores-frontend/index.html')));
 
-app.listen(PORT,() => console.log("server running..."))
+app.listen(PORT,() => console.log("server running on port", PORT))
 
 
  

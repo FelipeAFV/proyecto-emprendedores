@@ -98,4 +98,4 @@ app.use('/api/adminRoute', role_auth_1.default.checkRole([app_role_1.AppRole.ADM
 console.log(process.cwd());
 console.log(process.env.NODE_ENV);
 app.get("*", function (req, res) { return res.sendFile(path_1.default.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/index.html')); });
-app.listen(PORT, function () { return console.log("server running..."); });
+app.listen(PORT, function () { return console.log("server running on port", PORT); });

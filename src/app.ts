@@ -26,7 +26,7 @@ app.use(cors({
     origin: 'http://localhost:4200'
 }));
 
-app.use(helmet());
+// app.use(helmet());
 
 app.use(cookieParser());
 app.use(express.json());

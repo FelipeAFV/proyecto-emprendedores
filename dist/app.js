@@ -43,7 +43,6 @@ var express_1 = __importDefault(require("express"));
 require("./create-database");
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
-var helmet_1 = __importDefault(require("helmet"));
 var auth_1 = require("./routes/auth");
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var app = express_1.default();
@@ -63,7 +62,7 @@ app.use(cors_1.default({
     credentials: true,
     origin: 'http://localhost:4200'
 }));
-app.use(helmet_1.default());
+// app.use(helmet());
 app.use(cookie_parser_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded());

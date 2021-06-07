@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/app.ts",
-    "start": "cross-env NODE_ENV=production node dist/app.js",
+    "config": "ts-node src/config-data.ts",
+    "start": "npm run config && cd ./frontend && npm run build && cd .. && cross-env NODE_ENV=production node dist/app.js",
     "build": "tsc -p ./tsconfig.json"
   },
   "repository": {

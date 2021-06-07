@@ -1,6 +1,6 @@
 import express from "express";
 import { Request, Response } from "express";
-import { send } from "node:process";
+import dotenv from "dotenv";
 import "./create-database";
 import cors from "cors";
 import path from "path";
@@ -25,7 +25,7 @@ app.use(cors({
     credentials: true,
     origin: 'http://localhost:4200'
 }));
-
+dotenv.config();
 // app.use(helmet());
 
 app.use(cookieParser());
@@ -64,6 +64,7 @@ app.use('/api/adminRoute', roleAuth.checkRole([AppRole.ADMIN, AppRole.CLIENT]), 
      
 //})
 console.log(process.cwd());
+console.log(process.env.PATH);
 console.log(process.env.NODE_ENV);
 app.get("*", (req,res) => res.sendFile(path.join(process.cwd(),'/frontend/dist/proyecto-emprendedores-frontend/index.html')));
 

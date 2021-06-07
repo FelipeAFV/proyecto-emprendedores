@@ -66,7 +66,9 @@ var AuthorizationController = /** @class */ (function () {
                         return [4 /*yield*/, personService.getPerson(profile)];
                     case 2:
                         storeManager = _b.sent();
-                        isStoreOwner = store_permission_1.default.isStoreOwner(storeManager === null || storeManager === void 0 ? void 0 : storeManager.id, storeName);
+                        return [4 /*yield*/, store_permission_1.default.isStoreOwner(storeManager === null || storeManager === void 0 ? void 0 : storeManager.id, storeName)];
+                    case 3:
+                        isStoreOwner = _b.sent();
                         isStoreOwner ? res.status(200).json({ message: 'Authorized: Is store owner' }) :
                             res.status(401).json({ message: 'Unauthorized: Is not store owner' });
                         return [2 /*return*/];

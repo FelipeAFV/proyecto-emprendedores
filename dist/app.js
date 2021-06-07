@@ -40,6 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var dotenv_1 = __importDefault(require("dotenv"));
 require("./create-database");
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
@@ -62,10 +63,11 @@ app.use(cors_1.default({
     credentials: true,
     origin: 'http://localhost:4200'
 }));
+dotenv_1.default.config();
 // app.use(helmet());
 app.use(cookie_parser_1.default());
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded());
+app.use(express_1.default.json);
+app.use(express_1.default.urlencoded);
 app.use(express_1.default.static(path_1.default.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/')));
 app.use('/cookie', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
@@ -96,6 +98,7 @@ app.use('/api/adminRoute', role_auth_1.default.checkRole([app_role_1.AppRole.ADM
 // res.send(payload);
 //})
 console.log(process.cwd());
+console.log(process.env.PATH);
 console.log(process.env.NODE_ENV);
 app.get("*", function (req, res) { return res.sendFile(path_1.default.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/index.html')); });
 app.listen(PORT, function () { return console.log("server running on port", PORT); });

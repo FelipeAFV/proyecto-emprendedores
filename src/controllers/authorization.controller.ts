@@ -20,7 +20,7 @@ class AuthorizationController {
         const personService: PersonService = personserviceFactory.createPersonServiceFromRole(profile.role);
         const storeManager = await personService.getPerson(profile);
 
-        const isStoreOwner = storePermissionService.isStoreOwner(storeManager?.id, storeName);
+        const isStoreOwner = await storePermissionService.isStoreOwner(storeManager?.id, storeName);
 
         isStoreOwner ?  res.status(200).json({message: 'Authorized: Is store owner'}) : 
          res.status(401).json({message: 'Unauthorized: Is not store owner'});

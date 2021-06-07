@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/app.ts",
     "config": "node src/config-data.js",
-    "start": "npm run config && cd ./frontend && npm run build && cd .. && cross-env NODE_ENV=production node dist/app.js",
+    "start": "cross-env NODE_ENV=production node dist/app.js",
     "build": "tsc -p ./tsconfig.json"
   },
   "repository": {

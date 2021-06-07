@@ -1,5 +1,5 @@
-import express from "express";
-import { Request, Response } from "express";
+
+import express, { Request, Response, urlencoded, json } from "express";
 import dotenv from "dotenv";
 import "./create-database";
 import cors from "cors";
@@ -29,8 +29,8 @@ dotenv.config();
 // app.use(helmet());
 
 app.use(cookieParser());
-app.use(express.json);
-app.use(express.urlencoded); 
+app.use(json());
+app.use(express.urlencoded())
 app.use(express.static(path.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/')));
 app.use('/cookie', async (req, res , next) => {
     JWTService.setJwtInCookie({role: AppRole.CLIENT}, res);

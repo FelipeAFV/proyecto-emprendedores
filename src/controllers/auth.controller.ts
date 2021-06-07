@@ -11,7 +11,6 @@ import JWTService from "../services/token/jwt-service";
 import CookieService from "../services/cookie/cookie-service";
 import {AppCookie} from "../model/enums/app-cookies";
 import { UserPayload } from "model/interfaces/user-payload";
-import { profile } from "node:console";
 import jwtService from "../services/token/jwt-service";
 
 class authController{

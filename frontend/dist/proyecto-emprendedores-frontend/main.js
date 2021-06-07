@@ -158,13 +158,17 @@ FormValidationService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! process */ "8oxB");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_0__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+
+const PORT = process__WEBPACK_IMPORTED_MODULE_0___default.a.env.PORT;
 const environment = {
     production: false,
-    ApiUrl: 'http://localhost:3000/api',
-    AuthUrl: 'http://localhost:3000'
+    ApiUrl: 'http://localhost:' + PORT + '/api',
+    AuthUrl: 'http://localhost:' + PORT
 };
 /*
  * For easier debugging in development mode, you can import the following file

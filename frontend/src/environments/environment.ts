@@ -1,6 +1,6 @@
 
 export const environment = {
     production: false,
-    ApiUrl: 'http://localhost:80/api',
-    AuthUrl: 'http://localhost:80'
+    ApiUrl: 'https://proyecto-emprendedores.herokuapp.com/api',
+    AuthUrl: 'https://proyecto-emprendedores.herokuapp.com'
   };

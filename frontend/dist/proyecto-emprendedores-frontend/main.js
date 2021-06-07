@@ -160,8 +160,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: false,
-    ApiUrl: 'http://localhost:80/api',
-    AuthUrl: 'http://localhost:80'
+    ApiUrl: 'https://proyecto-emprendedores.herokuapp.com/api',
+    AuthUrl: 'https://proyecto-emprendedores.herokuapp.com'
 };
 
 

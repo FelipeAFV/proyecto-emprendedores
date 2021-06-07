@@ -1,6 +1,6 @@
 
 export const environment = {
     production: false,
-    ApiUrl: '/api',
-    AuthUrl: '/'
+    ApiUrl: 'http://localhost:80/api',
+    AuthUrl: 'http://localhost:80'
   };

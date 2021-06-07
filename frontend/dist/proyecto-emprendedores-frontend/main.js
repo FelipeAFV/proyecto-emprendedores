@@ -160,8 +160,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: false,
-    ApiUrl: 'http://localhost:undefined/api',
-    AuthUrl: 'http://localhost:undefined'
+    ApiUrl: 'http://localhost/api',
+    AuthUrl: 'http://localhost'
 };
 
 

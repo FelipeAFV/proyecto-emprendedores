@@ -1,5 +1,5 @@
-import { writeFile } from "fs";
-import dotenv from "dotenv";
+const fs = require('fs');
+const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT;
 
@@ -17,7 +17,7 @@ export const environment = {
     AuthUrl: 'http://localhost:${PORT}'
   };
 `;
-writeFile('./frontend/src/environments/environment.ts', enviromentConfig, (err) => {
+fs.writeFile('./frontend/src/environments/environment.ts', enviromentConfig, (err) => {
     if (err) {
         console.log('An error has ocurred when writing to enviroment file');
         console.log(err);
@@ -26,7 +26,7 @@ writeFile('./frontend/src/environments/environment.ts', enviromentConfig, (err) 
 
     }
 });
-writeFile('./frontend/src/environments/environment.prod.ts', enviromentConfigProd, (err) => {
+fs.writeFile('./frontend/src/environments/environment.prod.ts', enviromentConfigProd, (err) => {
     if (err) {
         console.log('An error has ocurred when writing to enviroment file');
         console.log(err);

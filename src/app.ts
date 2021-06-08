@@ -23,7 +23,7 @@ import storeManagerRoutes from "./routes/storeManager.routes";
 /**Middleware for cors policy*/
 app.use(cors({
     credentials: true,
-    origin: '*'
+    origin: 'localhost'
 }));
 dotenv.config();
 // app.use(helmet());

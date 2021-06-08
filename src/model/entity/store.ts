@@ -25,6 +25,6 @@ export class Store {
     @ManyToMany( () => StoreManager, manager => manager.stores)
     managers: StoreManager[];
 
-    @OneToMany(type=> Product, product => product.store)
-    products: Product[];
+    @OneToMany( () => Product, product => product.store)
+    products?: Product[];
 }

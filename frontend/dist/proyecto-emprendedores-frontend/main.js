@@ -159,7 +159,7 @@ FormValidationService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
-    production: false,
+    production: true,
     ApiUrl: 'https://proyecto-emprendedores.herokuapp.com/api',
     AuthUrl: 'https://proyecto-emprendedores.herokuapp.com'
 };

@@ -23,7 +23,7 @@ import storeManagerRoutes from "./routes/storeManager.routes";
 /**Middleware for cors policy*/
 app.use(cors({
     credentials: true,
-    origin: 'localhost'
+    origin: 'http://localhost:4200'
 }));
 dotenv.config();
 // app.use(helmet());
@@ -63,8 +63,6 @@ app.use('/api/adminRoute', roleAuth.checkRole([AppRole.ADMIN, AppRole.CLIENT]), 
     // res.send(payload);
      
 //})
-console.log(process.cwd());
-console.log(process.env.PATH);
 console.log(process.env.NODE_ENV);
 app.get("*", (req,res) => res.sendFile(path.join(process.cwd(),'/frontend/dist/proyecto-emprendedores-frontend/index.html')));
 

@@ -21,6 +21,6 @@ export class Product {
     })
     type: ProductType;
 
-    @ManyToOne(type => Store, store => store.products)
+    @ManyToOne( () => Store, store => store.products)
     store: Store;
 }

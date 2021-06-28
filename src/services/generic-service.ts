@@ -32,4 +32,8 @@ export class GenericService<T> {
     async create(entity: T) {
         return getRepository(this.entity).save(entity);
     }
+
+    async getRepo(){
+        return getRepository(this.entity)
+    }
 }

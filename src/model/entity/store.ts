@@ -26,5 +26,5 @@ export class Store {
     managers: StoreManager[];
 
     @OneToMany( () => Product, product => product.store)
-    products?: Product[];
+    products: Product[];
 }

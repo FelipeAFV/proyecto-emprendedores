@@ -5,8 +5,9 @@ import { AppRole } from "../model/enums/app-role";
 import storemanagerService from "../services/storemanager-service";
 import jwtService from "../services/token/jwt-service";
 import storeService from "../services/store-service";
+import productService from "../services/product-service";
 import {fromStringToCategory} from "../utils/store-utils";
-
+import { Product } from "../model/entity/product";
 
 class StoreController {
 
@@ -36,9 +37,19 @@ class StoreController {
         if(!currentManager) return res.status(500).json({message: "no manager found"})
 
         //Creamos la store y respondemos
-        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager]});
-
+        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager], products : []});
+        
         res.status(200).json({message:"store created succesfully"});
+
+    }
+
+    async prueba(req: Request, res: Response){
+        const category = req.query.category;
+        const productName = req.query.product;
+        const storeRepo = await productService.getRepo();
+        const results = await storeRepo.createQueryBuilder('product').leftJoinAndSelect('product.store', 'store').where('product.name like :name', {name: '%' + productName + '%'}).andWhere('store.category = :category', {category: category}).execute();
+
+        res.json({results: results});
 
     }
 }

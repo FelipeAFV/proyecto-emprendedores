@@ -1,8 +1,35 @@
 #title-container {
     text-align: center;
+    height: 300px;
+    background-color: var(--second-color);
+    width: 100%;
+    color: var(--first-color);
+    margin: 0;
+    background: linear-gradient(var(--third-color), var(--second-color));
 }
 #title-container h1 {
     display: inline-block;
+}
+
+.actions-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10rem 0;
+}
+
+.action-item {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: 10rem;
+    text-align: center;
+}
+
+.action-item a {
+    text-decoration: none;
+    color: #000000;
 }
 
 

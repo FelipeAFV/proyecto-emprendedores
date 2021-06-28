@@ -40,3 +40,19 @@ body {
     color: var(--fourth-color);
 }
 
+.hoverable-card {
+    margin: 1em;
+    padding: 0.6em;
+    border: solid #f3f3f3 3px;
+    /* border-radius: 1em; */
+    box-shadow: 5px 5px 13px 8px #C5C5C5;
+    transition: 0.5s;
+}
+
+.hoverable-card:hover {
+    transition: 0.5s;
+    transform: translate(-5px,-5px);
+    cursor: pointer;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

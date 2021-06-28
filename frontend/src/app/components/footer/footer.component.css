@@ -1,0 +1,15 @@
+.my-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 3rem 5rem;
+    background: linear-gradient( var(--second-color), var(--third-color));
+    box-shadow: 5px 5px 13px 8px #f3f3f3;
+}
+
+.my-footer a {
+    color: #f3f3f3;
+    text-decoration: none;
+
+}

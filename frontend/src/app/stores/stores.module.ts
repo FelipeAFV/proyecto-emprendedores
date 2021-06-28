@@ -7,19 +7,25 @@ import { CheckRoleDirective } from '../directives/check-role/check-role.directiv
 import { DirectivesModule } from '../modules/directives/directives.module';
 import { StoreAddComponent } from './components/store-add/store-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreSearchComponent } from './components/store-search/store-search.component';
+import { MatTableModule } from '@angular/material/table';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
 @NgModule({
   declarations: [
     StoreComponent,
-    StoreAddComponent
+    StoreAddComponent,
+    StoreSearchComponent
   ],
   imports: [
     CommonModule,
     StoresRoutingModule,
     DirectivesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    NgxPaginationModule
   ],
   providers: [
     StoreService

@@ -10,13 +10,19 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { CheckRoleDirective } from './directives/check-role/check-role.directive';
 import { DirectivesModule } from './modules/directives/directives.module';
+import { CheckAuthDirective } from './directives/check-auth/check-auth.directive';
+import { FooterComponent } from './components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,10 @@ import { DirectivesModule } from './modules/directives/directives.module';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    DirectivesModule
+    DirectivesModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,3 +32,7 @@ export function getAppCategorySpec(category: StoreCategory) {
 export function getAllStoreCategories(): StoreCategory[] {
     return [StoreCategory.CLOTHES, StoreCategory.HOME, StoreCategory.GENERAL, StoreCategory.ELECTRONICS, StoreCategory.TOYS]
 }
+
+export function getPresentableNameFromCategory(category: StoreCategory) {
+    return getAppCategorySpec(category).presentableName;
+  }

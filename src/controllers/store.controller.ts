@@ -48,8 +48,12 @@ class StoreController {
         const productName = req.query.product;
         const storeRepo = await productService.getRepo();
         const results = await storeRepo.createQueryBuilder('product').leftJoinAndSelect('product.store', 'store').where('product.name like :name', {name: '%' + productName + '%'}).andWhere('store.category = :category', {category: category}).execute();
-
-        res.json({results: results});
+        if(results.length === 0){
+            res.status(500).json({message: "no matching items found"})
+        }else{
+            res.status(200).json({message: results});
+        }
+        
 
     }
 }

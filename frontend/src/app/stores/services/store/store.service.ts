@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Store } from 'src/app/model/store';
 import { environment } from 'src/environments/environment';
 import { StoreCategory } from '../../enums/store-category';
@@ -68,11 +69,18 @@ export class StoreService {
     
   }
   
-  getStoresByFilters(storeFilters: StoreFilters) : Observable<Store[]> {
-    return of(this.stores.filter( (store) => {
-      return store.name.includes(storeFilters.name);
-    }));
-    // return this.http.post<Store[]>(`${environment.ApiUrl}/stores`, storeFilters, {withCredentials: true});
+  getStoresByFilters(storeFilters: StoreFilters) : Observable<any> {
+    let params = new HttpParams();
+    params.set('name', storeFilters.name);
+    // return of(this.stores.filter( (store) => {
+    //   return store.name.includes(storeFilters.name);
+    // }));
+    return this.http.get<any>(`${environment.ApiUrl}/stores/search/`, {
+      params: params ,withCredentials: true}).pipe(
+        map((data) => {
+          console.log('Datos de la busqueda', data);
+        })
+      );
 
   }
   

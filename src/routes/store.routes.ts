@@ -5,7 +5,8 @@ import { AppRole } from "../model/enums/app-role";
 const router: Router = Router();
 
 router.post('/', RoleAuth.checkRole([AppRole.ADMIN,AppRole.STORE_MANAGER]),storeController.createStore);
-router.get('/search', storeController.search);
+router.get('/searchProduct', storeController.searchProduct);
+router.get('/searchStore', storeController.searchStore);
 router.get('/:storeName', storeController.getStoreByName);
 
 

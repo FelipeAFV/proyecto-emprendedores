@@ -43,7 +43,7 @@ class StoreController {
 
     }
 
-    async prueba(req: Request, res: Response){
+    async search(req: Request, res: Response){
         const category = req.query.category;
         const productName = req.query.product;
         const storeRepo = await productService.getRepo();

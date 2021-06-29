@@ -37,6 +37,6 @@ export class StoreSearchComponent implements OnInit {
   }
 
   search() {
-    this.storeService.getStoresByFilters(this.storeSearchForm.value).subscribe(stores => this.stores = stores);
+    this.storeService.getStoresByFilters(this.storeSearchForm.value).subscribe(data => this.stores = data.message);
   }
 }

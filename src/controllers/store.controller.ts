@@ -61,7 +61,7 @@ class StoreController {
         const category = req.query.category;
         const storeName = req.query.store;
         const storeRepo = await storeService.getRepo();
-        const results = await storeRepo.createQueryBuilder('store').where('store.name like :name', {name: '%' + storeName + '%'}).andWhere('store.category = :category', {category: category}).execute();
+        const results = await storeRepo.createQueryBuilder('store').where('store.name like :name', {name: '%' + storeName + '%'}).andWhere('store.category = :category', {category: category}).getMany();
         if(results.length === 0){
             res.status(500).json({message: "no matching stores found"})
         }else{

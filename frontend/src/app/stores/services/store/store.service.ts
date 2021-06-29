@@ -72,15 +72,12 @@ export class StoreService {
   getStoresByFilters(storeFilters: StoreFilters) : Observable<any> {
     let params = new HttpParams();
     params.set('name', storeFilters.name);
+    console.log('Store name ', storeFilters.name);
     // return of(this.stores.filter( (store) => {
     //   return store.name.includes(storeFilters.name);
     // }));
-    return this.http.get<any>(`${environment.ApiUrl}/stores/search/`, {
-      params: params ,withCredentials: true}).pipe(
-        map((data) => {
-          console.log('Datos de la busqueda', data);
-        })
-      );
+    return this.http.get<any>(`${environment.ApiUrl}/stores/searchStore?`, {
+      params: {store : storeFilters.name, category: storeFilters.category} ,withCredentials: true});
 
   }
   

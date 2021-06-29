@@ -28,8 +28,10 @@
     <h2>Tiendas</h2>  
    
     <div class="hoverable-card store" *ngFor="let store of stores | paginate: { itemsPerPage: 5, currentPage: p }">
-      {{store.name}}
-    </div>
+      <a routerLink="/stores/{{store.name}}">
+        {{store.name}}
+      </a>
+      </div>
     <ng-template [ngIf]="stores">
       
       <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>

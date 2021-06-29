@@ -24,7 +24,7 @@ export class StoreSearchComponent implements OnInit {
   constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
-    this.defaultCategory = StoreCategory.GENERAL;
+    this.defaultCategory = StoreCategory.ALL;
     this.storeCategories = getAllStoreCategories(); 
     this.storeSearchForm = new FormGroup({
       name: new FormControl(''),

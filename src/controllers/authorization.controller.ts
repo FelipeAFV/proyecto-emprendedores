@@ -9,7 +9,7 @@ class AuthorizationController {
 
     async isStoreOwner(req: Request, res: Response) {
 
-        const { storeName } = req.body.storeName;
+        const { storeName } = req.body;
 
         const profileId = jwtService.getJwtPayloadInCookie(req)?.profileId;
         if (!profileId) return res.status(500).json({message: 'error'});
@@ -21,8 +21,8 @@ class AuthorizationController {
         const storeManager = await personService.getPerson(profile);
 
         const isStoreOwner = await storePermissionService.isStoreOwner(storeManager?.id, storeName);
-
-        isStoreOwner ?  res.status(200).json({message: 'Authorized: Is store owner'}) : 
+        console.log('Is store owner ', storeName);
+        isStoreOwner ? res.status(200).json({message: 'Authorized: Is store owner'}) : 
          res.status(401).json({message: 'Unauthorized: Is not store owner'});
 
     }

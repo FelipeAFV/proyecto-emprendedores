@@ -27,12 +27,14 @@ export class StoreComponent implements OnInit {
 
     
     this.activatedRoute.params.subscribe( (params: Params) => {
-      console.log('Param id', params.id);
+      console.log('Param id', params.storeName);
       this.storeService.isStoreManager(params.storeName).subscribe(
         (data) => {
           this.isStoreManagerViewing = true;
+          console.log(data);
         },
         (error) => {
+          console.log('Error ', error);
           this.isStoreManagerViewing = false;
         }
       );

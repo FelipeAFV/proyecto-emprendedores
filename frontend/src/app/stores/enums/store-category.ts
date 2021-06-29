@@ -1,6 +1,7 @@
 
 
 export enum StoreCategory {
+    ALL = 'ALL',
     CLOTHES = 'CLOTHES',
     HOME = 'HOME',
     GENERAL = 'GENERAL',
@@ -25,12 +26,17 @@ export function getAppCategorySpec(category: StoreCategory) {
         case StoreCategory.TOYS:
             return { value: StoreCategory.TOYS, presentableName: 'Jugueteria'}
             break;
+        case StoreCategory.ALL:
+            return { value: StoreCategory.ALL, presentableName: 'Todas'}
+            break;
+
     }
 
 }
 
 export function getAllStoreCategories(): StoreCategory[] {
-    return [StoreCategory.CLOTHES, StoreCategory.HOME, StoreCategory.GENERAL, StoreCategory.ELECTRONICS, StoreCategory.TOYS]
+    return [StoreCategory.CLOTHES, StoreCategory.HOME, StoreCategory.GENERAL, StoreCategory.ELECTRONICS, StoreCategory.TOYS,
+    StoreCategory.ALL]
 }
 
 export function getPresentableNameFromCategory(category: StoreCategory) {

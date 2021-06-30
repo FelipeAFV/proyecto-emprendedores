@@ -19,6 +19,17 @@ import storeRoutes from "./routes/store.routes";
 import profileRoutes from "./routes/profile.routes";
 import authorizationRoutes from "./routes/authorization.routes";
 import storeManagerRoutes from "./routes/storeManager.routes";
+import multer from 'multer';
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname + '/public/images'),
+    filename: (req:Request, file, cb) => {
+        cb(null,file.originalname)
+    }
+})
+
+const upload = multer({storage})
+
 //global middleware
 /**Middleware for cors policy*/
 app.use(cors({
@@ -31,6 +42,7 @@ dotenv.config();
 app.use(cookieParser());
 app.use(json());
 app.use(express.urlencoded())
+//app.use(multer({storage: storage}).single('image'))
 app.use(express.static(path.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/')));
 app.use('/cookie', async (req, res , next) => {
     JWTService.setJwtInCookie({role: AppRole.CLIENT}, res);
@@ -38,6 +50,15 @@ app.use('/cookie', async (req, res , next) => {
 })
 
 
+app.post('/pruebas', upload.single('image'),(req:Request, res: Response) => {
+    
+    if(!req.file){
+        res.status(500).json({message: 'no image send to upload'})
+    }else{
+        res.status(200).json({message: 'image upload succesfully'})
+    }
+    
+})
 
 /**Authentication and Authorization routes */
 app.use("/",authController);

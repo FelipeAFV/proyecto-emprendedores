@@ -25,13 +25,10 @@ const storage = multer.diskStorage({
     destination: path.join(__dirname + '/public/images'),
     filename: (req:Request, file, cb) => {
         fs.exists(path.join(__dirname + '/public/images/' + file.originalname), function(exists) {
-            let uploadedFileName;
             if (exists) {
-                uploadedFileName = Date.now() + '.' + file.originalname;
-            } else {
-                uploadedFileName = file.originalname;
-            } 
-            cb(null, uploadedFileName)
+                file.originalname = Date.now() + '.' + file.originalname;
+            }
+            cb(null, file.originalname)
         });
     }
 })
@@ -63,6 +60,8 @@ app.post('/pruebas', upload.single('image'),(req:Request, res: Response) => {
     if(!req.file){
         res.status(500).json({message: 'no image send to upload'})
     }else{
+        console.log(req.file.originalname);
+        
         res.status(200).json({message: 'image upload succesfully'})
     }
     

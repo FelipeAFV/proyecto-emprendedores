@@ -20,11 +20,19 @@ import profileRoutes from "./routes/profile.routes";
 import authorizationRoutes from "./routes/authorization.routes";
 import storeManagerRoutes from "./routes/storeManager.routes";
 import multer from 'multer';
-
+import fs from 'fs';
 const storage = multer.diskStorage({
     destination: path.join(__dirname + '/public/images'),
     filename: (req:Request, file, cb) => {
-        cb(null,file.originalname)
+        fs.exists(path.join(__dirname + '/public/images/' + file.originalname), function(exists) {
+            let uploadedFileName;
+            if (exists) {
+                uploadedFileName = Date.now() + '.' + file.originalname;
+            } else {
+                uploadedFileName = file.originalname;
+            } 
+            cb(null, uploadedFileName)
+        });
     }
 })
 

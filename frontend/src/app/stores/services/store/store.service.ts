@@ -85,4 +85,10 @@ export class StoreService {
     return this.http.post(`${environment.ApiUrl}/stores`, store, {withCredentials: true});
 
   }
+
+  uploadStoreImage(image: File) {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post(`${environment.AuthUrl}/pruebas`, formData, {withCredentials: true});
+  }
 }

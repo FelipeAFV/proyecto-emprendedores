@@ -9,3 +9,14 @@ h1 {
     
 }
 
+.imageLoaded {
+    height: 40px;
+    width: 30px;
+}
+
+.my-store-add-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+

@@ -1,4 +1,6 @@
-<div class="my-container w-25 container my-5">
+<div class="my-store-add-container  my-5">
+  <div >
+
     <h1>Creación de tienda</h1>
     <form [formGroup]="addStoreForm" (ngSubmit)="createStore()">
         <div class="my-3">
@@ -16,8 +18,25 @@
           <textarea formControlName="description" id="description" class="form-control">
           </textarea>
         </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Imágenes</label>
+          <input type="file" (change)="imageLoading($event)" formControlName="image" id="image" class="form-control"/>
+        </div>
         
         <button type="submit" class="my-button">Crear</button>
       </form>
+          
+  </div>
+
+  <div>
+
+    <div>
+      <h2>Vista previa</h2>
+      <!-- <div [ngStyle]="{'background-image': 'url('+ imageToUpload + ')'}" class="imageLoaded">
+      </div> -->
+      <img [src]="imageToUpload" *ngIf="imageToUpload" style="height: 300px; width:500px">
+    </div>
+  </div>
+      
     
 </div>

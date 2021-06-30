@@ -13,6 +13,8 @@ export class StoreAddComponent implements OnInit {
 
   addStoreForm: FormGroup;
 
+  imageToUpload: string;
+
   defaultCategory: StoreCategory = StoreCategory.GENERAL;
   storeCategories: StoreCategory[] = getAllStoreCategories(); 
   // storeCategories: AppCategory[] = getAllStoreCategories().filter( category => category !== this.defaultCategory); 
@@ -41,6 +43,34 @@ export class StoreAddComponent implements OnInit {
         alert(err);
       }
     );
+  }
+
+  imageLoading(fileEvent) {
+    this.imageToUpload = fileEvent.target.files[0];
+    const reader = new FileReader();
+     
+    if(fileEvent.target.files && fileEvent.target.files.length) {
+      const [file] = fileEvent.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+    
+        this.imageToUpload = reader.result as string;
+      
+        
+    
+      };
+    
+    }
+    // this.storeService.uploadStoreImage(this.imageToUpload).subscribe(
+    //   (data) => {
+    //     console.log('Upload success');
+    //   }, 
+    //   (err) => {
+    //     console.log('Upload failed');
+        
+    //   }
+    // );
   }
 
 

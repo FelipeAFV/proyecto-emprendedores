@@ -51,10 +51,15 @@ export class StoreAddComponent implements OnInit {
      
     if(fileEvent.target.files && fileEvent.target.files.length) {
       const [file] = fileEvent.target.files;
+
+      //The file is readed from the file input
       reader.readAsDataURL(file);
      
       reader.onload = () => {
-    
+        /**   After the file is readed, the url of the temporary file
+        **  stored in frontent is asign to the result property of the reader
+        **  object.
+        */
         this.imageToUpload = reader.result as string;
       
         

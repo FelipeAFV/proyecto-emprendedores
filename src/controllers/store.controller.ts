@@ -8,7 +8,10 @@ import storeService from "../services/store-service";
 import productService from "../services/product-service";
 import {fromStringToCategory} from "../utils/store-utils";
 import { Product } from "../model/entity/product";
-
+import fs from 'fs';
+import FileService from '../services/fileadmin-service';
+import fileadminService from "../services/fileadmin-service";
+import path from 'path';
 class StoreController {
 
     async getStoreByName(req: Request, res: Response) {
@@ -43,6 +46,34 @@ class StoreController {
 
     }
 
+    async createStore2(req: Request, res: Response){
+        //Obtenemos informacion del request
+        const {name, description, category} = req.body;
+        const parsedCaregory = fromStringToCategory(category);
+
+        //Se revisa si ya existe una tienda creada con el mismo nombre
+        const foundStore = await storeService.getByName(name);
+        if(foundStore) return res.status(500).json({message: "store name already in use"})
+
+         //Obtenemos informacion de la cookie
+        const cookieData = jwtService.getJwtPayloadInCookie(req);
+        if(cookieData?.role !== AppRole.STORE_MANAGER) return res.status(500).json({message:"User dont have permissions to create new stores"});
+
+        //Obtenemos el manager que esta haciendo la solicitud
+        const currentManager = await storemanagerService.getByConditions({where:{profile:cookieData?.profileId}})
+        if(!currentManager) return res.status(500).json({message: "no manager found"})
+
+        //Se crea la nueva carpeta contenedora de imagenes de la tienda y se mueve el archivo recibido a dicha carpeta
+        fileadminService.moveNewFile(__dirname + '/../public/images/' + req.file?.originalname,__dirname + '/../public/images/'+name + '/' + req.file?.originalname)
+
+
+        //Creamos la store y respondemos
+        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager], products : [], img_name:req.file?.originalname});
+        
+        res.status(200).json({message:"store created succesfully"});
+
+    }
+    
     async searchProduct(req: Request, res: Response){
         const category = req.query.category;
         const productName = req.query.product;
@@ -70,6 +101,19 @@ class StoreController {
         
 
     }
+
+    serveImage(req: Request, res: Response){
+        const {storeName, imgId} = req.params;
+
+        fs.exists(__dirname + '/../public/images/' + storeName + '/' + imgId, (exists) => {
+            if(!exists) res.sendStatus(500);
+
+            res.status(200).sendFile(path.resolve(__dirname + '/../public/images/' + storeName + '/' + imgId));
+        })
+
+        
+    }
+    
 }
 
 export default new StoreController();

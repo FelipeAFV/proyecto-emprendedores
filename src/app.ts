@@ -49,7 +49,7 @@ dotenv.config();
 app.use(cookieParser());
 app.use(json());
 app.use(express.urlencoded())
-//app.use(multer({storage: storage}).single('image'))
+app.use(multer({storage: storage}).single('image'))
 app.use(express.static(path.join(process.cwd(), '/frontend/dist/proyecto-emprendedores-frontend/')));
 app.use('/cookie', async (req, res , next) => {
     JWTService.setJwtInCookie({role: AppRole.CLIENT}, res);
@@ -57,21 +57,21 @@ app.use('/cookie', async (req, res , next) => {
 })
 
 
-app.post('/pruebas', upload.single('image'),(req:Request, res: Response) => {
+app.get('/pruebas',(req:Request, res: Response) => {
     
-    if(!req.file){
-        res.status(500).json({message: 'no image send to upload'})
-    }else{
-        fs.mkdir(__dirname + '/public/images/'+req.body.nombre, {recursive: true},(err) => {
-        console.log(err);
-        });
-        fs.rename(__dirname + '/public/images/' + req.file.originalname, __dirname + '/public/images/'+req.body.nombre + '/' + req.file.originalname, function (err) {
-            if (err) throw err
-            console.log('Successfully moved')
-          })
-        res.status(200).json({message: 'image upload succesfully'})
-    }
-    
+    // if(!req.file){
+    //     res.status(500).json({message: 'no image send to upload'})
+    // }else{
+    //     fs.mkdir(__dirname + '/public/images/'+req.body.name, {recursive: true},(err) => {
+    //     console.log(err);
+    //     });
+    //     fs.rename(__dirname + '/public/images/' + req.file.originalname, __dirname + '/public/images/'+req.body.name + '/' + req.file.originalname, function (err) {
+    //         if (err) throw err
+    //         console.log('Successfully moved')
+    //       })
+    //     res.status(200).json({message: 'image upload succesfully'})
+    // }
+    res.sendFile(__dirname + '/public/images/imagen2.jpg')
 })
 
 /**Authentication and Authorization routes */

@@ -15,6 +15,9 @@ export class Store {
     @Column({name: "description"})
     description: string;
 
+    @Column({name: "img_name"})
+    img_name?: string;
+
     @Column({
         type: "enum",
         enum: StoreCategory,

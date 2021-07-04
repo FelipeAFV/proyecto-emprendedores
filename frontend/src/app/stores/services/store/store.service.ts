@@ -81,8 +81,8 @@ export class StoreService {
 
   }
   
-  createStore(store: Store) {
-    return this.http.post(`${environment.ApiUrl}/stores`, store, {withCredentials: true});
+  createStore(storeData: FormData) {
+    return this.http.post(`${environment.ApiUrl}/stores`, storeData, {withCredentials: true});
 
   }
 
@@ -90,5 +90,10 @@ export class StoreService {
     const formData = new FormData();
     formData.append('image', image);
     return this.http.post(`${environment.AuthUrl}/pruebas`, formData, {withCredentials: true});
+  }
+
+  getStoreImage(storeName: string, storeImgName: string): Observable<Blob> {
+    return this.http.get(`${environment.ApiUrl}/stores/${storeName}/${storeImgName}`, { responseType:
+      'blob' ,withCredentials: true});
   }
 }

@@ -104,7 +104,7 @@ class StoreController {
 
     serveImage(req: Request, res: Response){
         const {storeName, imgId} = req.params;
-
+        console.log('Store name', storeName);
         fs.exists(__dirname + '/../public/images/' + storeName + '/' + imgId, (exists) => {
             if(!exists) res.sendStatus(500);
 

@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
           <label for="image" class="form-label">Imágenes</label>
-          <input type="file" (change)="imageLoading($event)" id="image" class="form-control"/>
+          <input type="file" (change)="imageLoading($event)" formControlName="image" id="image" class="form-control"/>
         </div>
         
         <button type="submit" class="my-button">Crear</button>
@@ -34,7 +34,7 @@
       <h2>Vista previa</h2>
       <!-- <div [ngStyle]="{'background-image': 'url('+ imageToUpload + ')'}" class="imageLoaded">
       </div> -->
-      <img *ngIf="imageToUpload"  [src]="imageToUpload" style="height: 300px; width:500px">
+      <img *ngIf="srcImageToUpload"  [src]="srcImageToUpload" style="height: 300px; width:500px">
     </div>
   </div>
       

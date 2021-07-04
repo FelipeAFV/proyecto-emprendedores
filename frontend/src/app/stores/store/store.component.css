@@ -2,8 +2,15 @@ h1 {
     text-align: center;
 }
 
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .subcontainer {
-    margin: 1em;
+    margin: 1em 3em;
     padding: 0.5em;
 }
 
@@ -23,4 +30,9 @@ h1 {
     bottom: 2rem;
     right: 1rem;
 
+}
+
+.store-image {
+    width: 40%;
+    min-width: 400px;
 }

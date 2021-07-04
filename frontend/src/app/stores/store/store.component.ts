@@ -14,6 +14,8 @@ export class StoreComponent implements OnInit {
 
   store: Store;
 
+  storeImage;
+
   isStoreManagerViewing: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private storeService: StoreService) {
@@ -42,8 +44,10 @@ export class StoreComponent implements OnInit {
         (data) => {
           this.store = data;
           console.log('Store', this.store);
+          this.searchImage(this.store.name, this.store.img_name);
         }
         );
+        
     })
     console.log('Store', this.store);
     // console.log(this.router.getCurrentNavigation().extras.state);
@@ -53,5 +57,28 @@ export class StoreComponent implements OnInit {
     //   console.log(data);
     // });
   }
+
+  searchImage(storeName: string, imgName: string) {
+    this.storeService.getStoreImage(storeName, imgName).subscribe(
+      
+      (data) => {
+        
+        console.log('Imagen ', data);
+        this.createImageFromBlob(data);
+      }
+    );
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.storeImage = reader.result;
+    }, false);
+    console.log(this.storeImage);
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
+
 
 }

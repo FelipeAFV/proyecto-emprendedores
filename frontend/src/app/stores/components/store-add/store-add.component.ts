@@ -13,7 +13,9 @@ export class StoreAddComponent implements OnInit {
 
   addStoreForm: FormGroup;
 
-  imageToUpload: string;
+  srcImageToUpload: string;
+
+  image: File;
 
   defaultCategory: StoreCategory = StoreCategory.GENERAL;
   storeCategories: StoreCategory[] = getAllStoreCategories(); 
@@ -23,7 +25,8 @@ export class StoreAddComponent implements OnInit {
     this.addStoreForm = new FormGroup({
       name: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
+      description: new FormControl('', Validators.required),
+      image: new FormControl('')
     });
   }
 
@@ -35,7 +38,12 @@ export class StoreAddComponent implements OnInit {
   }
 
   createStore() {
-    this.storeService.createStore(this.addStoreForm.value).subscribe(
+    const formData = new FormData();
+    formData.append('image', this.image);
+    formData.append('name', this.addStoreForm.get('name').value);
+    formData.append('category', this.addStoreForm.get('category').value );
+    formData.append('description', this.addStoreForm.get('description').value);
+    this.storeService.createStore(formData).subscribe(
       (data) => {
         this.router.navigate(['profile/storeManager']);
       },
@@ -46,7 +54,7 @@ export class StoreAddComponent implements OnInit {
   }
 
   imageLoading(fileEvent) {
-    this.imageToUpload = fileEvent.target.files[0];
+    this.srcImageToUpload = fileEvent.target.files[0];
     const reader = new FileReader();
      
     if(fileEvent.target.files && fileEvent.target.files.length) {
@@ -54,13 +62,14 @@ export class StoreAddComponent implements OnInit {
 
       //The file is readed from the file input
       reader.readAsDataURL(file);
+      this.image = file;
      
       reader.onload = () => {
         /**   After the file is readed, the url of the temporary file
         **  stored in frontent is asign to the result property of the reader
         **  object.
         */
-        this.imageToUpload = reader.result as string;
+        this.srcImageToUpload = reader.result as string;
       
         
     

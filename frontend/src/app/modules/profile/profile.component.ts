@@ -14,7 +14,7 @@ import { ProfileService } from './services/profile/profile.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit, AfterContentInit, OnChanges{
+export class ProfileComponent implements OnInit, AfterContentInit, OnChanges {
 
   personName: string;
   email: string;
@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit, AfterContentInit, OnChanges{
   }
 
   ngOnInit(): void {
+    
   }
   
   hasProfile(profile: AppRole) {

@@ -7,7 +7,7 @@
                 </div>
         </a>
         <div (click)="goToStore(store)" class="store-container" *ngFor="let store of managerStores">
-                <h4>{{store.name}}</h4>
-                <p>{{store.description}}</p>
+                {{store.image_name}}
+                <app-store-preview [name]="store.name" [description]="store.description" [imageName]="store.img_name"></app-store-preview>
         </div>
 </div>

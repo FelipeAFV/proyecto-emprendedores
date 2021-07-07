@@ -13,6 +13,7 @@ import { ProfileAddComponent } from './components/profile-add/profile-add.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreManagerProfileService } from './services/storemanager-profile/store-manager-profile.service';
 import { IconsModule } from '../icons/icons.module';
+import { StorePreviewComponent } from './components/store-preview/store-preview.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { IconsModule } from '../icons/icons.module';
     ClientProfileComponent,
     ProfileEditComponent,
     StoreManagerProfileComponent,
-    ProfileAddComponent
+    ProfileAddComponent,
+    StorePreviewComponent
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import RoleAuth from "../middlewares/role-auth";
 const router : Router = Router();
 
 router.get("/favoriteStores",RoleAuth.checkRole([AppRole.CLIENT]),clientController.getFavoritesStores);
+router.post("/try", RoleAuth.checkRole([AppRole.CLIENT]),clientController.addFavoriteStore)
 router.delete('/favoritesStores/:id',RoleAuth.checkRole([AppRole.CLIENT]), clientController.deleteFavoriteStore);
 
 export default router;

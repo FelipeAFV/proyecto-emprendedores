@@ -2,6 +2,7 @@ import {Request,response,Response} from "express";
 import UserService from "../services/user-service";
 import ClientService from "../services/client-service";
 import ProfileService from "../services/profile-service";
+import StoreService from '../services/store-service';
 import {User} from "../model/entity/user";
 import {Profile} from "../model/entity/profile";
 import {Client} from "../model/entity/client";
@@ -32,6 +33,42 @@ class ClientController{
         //const storeId: number = Number.parseInt(req.params.store_id);
         //const affected = await ClientService.deleteStore(storeId);
         //res.status(200).json({message: `Rows affected ${affected}`});
+    }
+
+    async addFavoriteStore(req:Request,res:Response) {
+
+        const {storeName} = req.body;
+        
+        //se busca la tienda que corresponda a el nombre del body
+        const foundStore = await StoreService.getByConditions({where:{name:storeName}});
+
+        // Revision de si existe o no la tienda buscada
+        if(!foundStore) return res.status(401).json({message:"no stores found"})
+
+        // Se busca el cliente que desea añadir alguna tienda a favoritos
+        const currentClient = await ClientService.getByConditions({where:{profile:req.payload.profileId}, relations:['favorite_stores']})
+        
+        // Se revisa si exsite el cliente que desea añadir alguna tienda a favortios
+        if(!currentClient) return res.status(401).json({message:"no client found"})
+
+        const currentFavorites = currentClient.favorite_stores;
+
+        const existsInFavorites = currentFavorites.find( store => store.name === foundStore.name);
+
+        // Se revisa si el usuario ya tiene esta store añadida a favoritos
+        if(existsInFavorites) return res.status(400).json({message: 'user already have this store added to favorites'})
+
+        // Obtenemos sus stores favoritas actuales y añadimos al array la nueva store
+        currentClient.favorite_stores = currentFavorites;
+
+        currentClient.favorite_stores.push(foundStore);
+
+        const clientCheck = await ClientService.create(currentClient)
+
+        if(!clientCheck) return res.status(501).json({message: 'internal server error'})
+
+        res.status(200).json(clientCheck);
+
     }
         
 

@@ -1,17 +1,32 @@
-<div class="main-container">
-    <div class="subcontainer">
+<div class="store-container">
+    <div id="store-container" class="card">
 
-        <h1>Bienvenidos a la tienda "<span id="store-name">{{store.name}}</span>"</h1>
-        <p>{{store.description}}</p>
-        <div *ngIf="isStoreManagerViewing" >
-
-            <button class="my-float-button my-button">Administrar</button>
+        <div class="card-header">
+            <h1>Bienvenidos a la tienda "<span id="store-name">{{store.name}}</span>"</h1>
         </div>
-        <!-- <button (click)="searchImage(store.name, store.img_name)" class="">Obtener imagen</button> -->
-    </div>
-
-    <div class="image-container">
+        <div class="card-body">
+            <div class="subcontainer">
+            
+            
+                <p>{{store.description}}</p>
+                <!-- <div *ngIf="isStoreManagerViewing" >
+                    
+                    <button class="my-float-button my-button">Administrar</button>
+                </div> -->
+                <!-- <button (click)="searchImage(store.name, store.img_name)" class="">Obtener imagen</button> -->
+            </div>
+            
+            <div class="image-container">
+                
+                <img class="store-image" [src]="storeImage" alt="">
+            </div>
+        </div>
         
-        <img class="store-image" [src]="storeImage" alt="">
     </div>
+</div>
+
+<div class="comment-container">
+
+    
+    <app-comment-section [comments]="storeComments"></app-comment-section>
 </div>

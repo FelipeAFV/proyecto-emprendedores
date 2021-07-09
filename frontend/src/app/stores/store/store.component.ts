@@ -3,8 +3,10 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from 'src/app/model/store';
+import { comments } from '../model/comments';
+import { Comment } from '../model/interfaces/comment';
 import { StoreService } from '../services/store/store.service';
-
+   
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
@@ -13,6 +15,8 @@ import { StoreService } from '../services/store/store.service';
 export class StoreComponent implements OnInit {
 
   store: Store;
+
+  storeComments: Comment[] = comments;
 
   storeImage;
 

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreSearchComponent } from './components/store-search/store-search.component';
 import { MatTableModule } from '@angular/material/table';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CommentSectionComponent } from './components/comment-section/comment-section.component';
 
 
 
@@ -17,7 +18,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     StoreComponent,
     StoreAddComponent,
-    StoreSearchComponent
+    StoreSearchComponent,
+    CommentSectionComponent
   ],
   imports: [
     CommonModule,

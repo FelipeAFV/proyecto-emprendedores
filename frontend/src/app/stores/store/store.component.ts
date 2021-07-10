@@ -3,6 +3,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from 'src/app/model/store';
+import { ClientProfileService } from 'src/app/modules/profile/services/client-profile/client-profile.service';
 import { comments } from '../model/comments';
 import { Comment } from '../model/interfaces/comment';
 import { StoreService } from '../services/store/store.service';
@@ -22,7 +23,7 @@ export class StoreComponent implements OnInit {
 
   isStoreManagerViewing: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private storeService: StoreService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private storeService: StoreService, private clientService: ClientProfileService) {
     // this.store = <Store> this.location.getState();
   }
 
@@ -84,5 +85,15 @@ export class StoreComponent implements OnInit {
     }
  }
 
+ addToFavorites(storeName: string) {
+  this.clientService.addFavoriteStore(storeName).subscribe(
+    (data) => {
+      console.log(data);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+ }
 
 }

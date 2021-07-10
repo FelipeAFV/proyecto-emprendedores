@@ -2,7 +2,7 @@ h1 {
     text-align: center;
 }
 
-.store-container {
+.store-container, .button-container {
     margin: 3rem; 
 }
 

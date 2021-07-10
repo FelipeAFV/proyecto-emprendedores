@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { ClientProfileService } from './modules/profile/services/client-profile/client-profile.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatTableModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [ClientProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

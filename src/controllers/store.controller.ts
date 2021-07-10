@@ -18,9 +18,13 @@ class StoreController {
 
     async getStoreByName(req: Request, res: Response) {
         const storeName = req.params.storeName;
+        
+        // Obtenemos y checkemos si existe alguna tienda bajo el nombre entregado
         const store = await storeService.getByConditions({where: {name: storeName}, relations: ['comments','comments.user']});
         //console.log(store);
         if (!store) return res.status(200).json({message: 'No store found'});
+
+        // Se devuelve la tienda encontrada
         res.status(200).json(store);
     }
 
@@ -122,22 +126,23 @@ class StoreController {
         const {content} = req.body;
         const storeName = req.params.storeName;
 
+        // Se revisa si la cookie esta seteada de manera correcta
         if(!req.payload.profileId) return res.status(500).json({message: 'no cookie set'});
 
+        //Se obtiene y checkea si el profile de la cookie existe
         const curretnUser = await profileService.getByConditions({where: {id: req.payload.profileId}, relations : ['user']});
 
         if(!curretnUser) return res.status(500).json({message: 'no user found'});
-
-        console.log(curretnUser);
-        
-
+     
+        // Obtenemos y revisamos que exista la tienda a la cual se le subira el comentario
         const store = await storeService.getByName(storeName);
 
-        if(!store) return res.status(500).json({message: 'error'})
+        if(!store) return res.status(500).json({message: 'error store not found'})
 
+        // Se publica y guarda el comentario a la tienda
         const service = await commentservice.create({id:0, content : content, store: store, user: curretnUser.user})
 
-        res.json(service);
+        res.status(200).json(service);
 
     }
     

@@ -13,4 +13,9 @@ export class ClientProfileService {
     // return of([{name: 'El emprendimiento1', description: 'Esta es la tienda del emprendimiento 1'},{name: 'El emprendimiento2',  description: 'Esta es la tienda del emprendimiento 1'}]);
     return this.http.get<Store[]>(`${environment.ApiUrl}/client/favoriteStores`, {withCredentials: true});
   }
+  
+  addFavoriteStore(storeName: String) {
+    return this.http.post(`${environment.ApiUrl}/client/try`, {storeName: storeName}, {withCredentials: true});
+
+  }
 }

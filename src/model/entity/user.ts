@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn , Unique} from "typeorm";
 import { Profile } from "./profile";
+import { Comment } from './comment';
 //import {MinLength} from 'class-validator';
 
 
@@ -20,5 +21,8 @@ export class User {
 
     @OneToMany(() => Profile, profile => profile.user )
     profiles: Profile[];
+
+    @OneToMany(() => Comment, comment => comment.user )
+    comments: Comment[];
 
 }

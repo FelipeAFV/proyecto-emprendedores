@@ -2,6 +2,7 @@ import { Column, Entity, ManyToMany, PrimaryColumn, PrimaryGeneratedColumn, OneT
 import { StoreManager } from "./store-manager";
 import { StoreCategory } from "../enums/store-category";
 import { Product} from "./product";
+import { Comment } from './comment';
 
 @Entity("store")
 export class Store {
@@ -30,4 +31,7 @@ export class Store {
 
     @OneToMany( () => Product, product => product.store)
     products: Product[];
+
+    @OneToMany( () => Comment, comment => comment.store)
+    comments: Comment[];
 }

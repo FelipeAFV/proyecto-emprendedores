@@ -5,6 +5,8 @@ import { AppRole } from "../model/enums/app-role";
 import storemanagerService from "../services/storemanager-service";
 import jwtService from "../services/token/jwt-service";
 import storeService from "../services/store-service";
+import commentservice from "../services/comment-service";
+import profileService from "../services/profile-service";
 import productService from "../services/product-service";
 import {fromStringToCategory} from "../utils/store-utils";
 import { Product } from "../model/entity/product";
@@ -16,8 +18,8 @@ class StoreController {
 
     async getStoreByName(req: Request, res: Response) {
         const storeName = req.params.storeName;
-        const store = await storeService.getByName(storeName);
-        console.log(store);
+        const store = await storeService.getByConditions({where: {name: storeName}, relations: ['comments','comments.user']});
+        //console.log(store);
         if (!store) return res.status(200).json({message: 'No store found'});
         res.status(200).json(store);
     }
@@ -40,7 +42,7 @@ class StoreController {
         if(!currentManager) return res.status(500).json({message: "no manager found"})
 
         //Creamos la store y respondemos
-        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager], products : []});
+        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager], products : [], comments: []});
         
         res.status(200).json({message:"store created succesfully"});
 
@@ -68,7 +70,7 @@ class StoreController {
 
 
         //Creamos la store y respondemos
-        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager], products : [], img_name:req.file?.originalname});
+        const newStore = await storeService.create({id: 0, name: name, description: description, category: category as StoreCategory , managers: [currentManager], products : [], img_name:req.file?.originalname, comments: []});
         
         res.status(200).json({message:"store created succesfully"});
 
@@ -112,6 +114,31 @@ class StoreController {
         })
 
         
+    }
+
+
+    async publishComment(req: Request, res: Response){
+
+        const {content} = req.body;
+        const storeName = req.params.storeName;
+
+        if(!req.payload.profileId) return res.status(500).json({message: 'no cookie set'});
+
+        const curretnUser = await profileService.getByConditions({where: {id: req.payload.profileId}, relations : ['user']});
+
+        if(!curretnUser) return res.status(500).json({message: 'no user found'});
+
+        console.log(curretnUser);
+        
+
+        const store = await storeService.getByName(storeName);
+
+        if(!store) return res.status(500).json({message: 'error'})
+
+        const service = await commentservice.create({id:0, content : content, store: store, user: curretnUser.user})
+
+        res.json(service);
+
     }
     
 }

@@ -19,6 +19,12 @@
           <div *ngIf="isNotValid('email')" class="form-text">Ingresa un mail válido</div>
         </div>
           
+        <div class="my-3">
+          <label for="phoneNumber" class="form-label">Número de teléfono</label>
+          <input formControlName="phoneNumber" type="text" class="form-control" id="phoneNumber" >
+          <div *ngIf="isNotValid('phoneNumber')" class="form-text">Ingresa un mail válido</div>
+        </div>
+          
           <div class="my-3">
             <label for="username" class="form-label">Usuario</label>
             <input formControlName="username" type="text" class="form-control" id="username" >

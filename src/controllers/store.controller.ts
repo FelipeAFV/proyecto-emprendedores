@@ -20,12 +20,20 @@ class StoreController {
         const storeName = req.params.storeName;
         
         // Obtenemos y checkemos si existe alguna tienda bajo el nombre entregado
-        const store = await storeService.getByConditions({where: {name: storeName}, relations: ['comments','comments.user']});
+        // const store = await storeService.getByConditions({where: {name: storeName}, relations: ['comments','comments.user']});
         //console.log(store);
-        if (!store) return res.status(200).json({message: 'No store found'});
+
+        const storeRepo = await storeService.getRepo();
+        const results = await storeRepo.createQueryBuilder('store')
+            .leftJoinAndSelect('store.managers', 'manager')
+            .leftJoinAndSelect('manager.profile', 'profile')
+            .leftJoinAndSelect('store.comments', 'comment')
+            .where('store.name = :storeName', { storeName: storeName }).getOne();
+        console.log(results);
+        if (!results) return res.status(200).json({message: 'No store found'});
 
         // Se devuelve la tienda encontrada
-        res.status(200).json(store);
+        res.status(200).json(results);
     }
 
     async createStore(req: Request, res: Response){

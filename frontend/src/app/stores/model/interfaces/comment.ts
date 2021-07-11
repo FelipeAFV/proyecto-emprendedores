@@ -1,4 +1,3 @@
 export interface Comment {
-    author: string,
-    description: string
+    content: string
 }

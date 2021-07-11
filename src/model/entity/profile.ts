@@ -14,6 +14,9 @@ export class Profile {
         default: AppRole.CLIENT
     })
     role: AppRole;
+
+    @Column({name: "phone_number"})
+    phoneNumber: string;
     
     @Column({name: "first_name"})
     firstName: string;

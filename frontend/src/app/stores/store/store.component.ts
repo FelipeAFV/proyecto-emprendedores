@@ -19,6 +19,8 @@ export class StoreComponent implements OnInit {
 
   storeComments: Comment[] = comments;
 
+  managers;
+
   storeImage;
 
   isStoreManagerViewing: boolean;
@@ -47,7 +49,10 @@ export class StoreComponent implements OnInit {
       );
       this.storeService.getStoreByName(params.storeName).subscribe(
         (data) => {
+          this.managers = data.managers;
+          console.log('Store data', data)
           this.store = data;
+          this.storeComments = data.comments;
           console.log('Store', this.store);
           this.searchImage(this.store.name, this.store.img_name);
         }

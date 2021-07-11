@@ -35,8 +35,11 @@ export class ProfileAddComponent implements OnInit {
       role: new FormControl(role, Validators.required),
       email: new FormControl(null, Validators.required),
       lastName: new FormControl(currentProfile.lastName, Validators.required),
-      firstName: new FormControl(currentProfile.firstName, [Validators.required, Validators.email])
+      firstName: new FormControl(currentProfile.firstName, [Validators.required, Validators.email]),
+      phoneNumber: new FormControl('')
     });
+
+
 
   }
 

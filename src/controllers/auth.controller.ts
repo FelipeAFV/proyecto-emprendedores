@@ -36,6 +36,7 @@ class authController{
                         new_profile.firstName = req.body.firstname;
                         new_profile.lastName = req.body.lastname;
                         new_profile.email = req.body.email;
+                        new_profile.phoneNumber = req.body.phoneNumber;
                         new_profile.user = new_user;
                         return Promise.resolve(new_profile)
                     })
@@ -46,6 +47,7 @@ class authController{
                         JWTService.setJwtInCookie({role:AppRole.CLIENT, profileId:cli.profile.id},res);
                         res.status(200).json({message: "user added succesfully", profile: new_profile})
                     }).catch((error) => {
+                        console.log(error);
                         res.status(500).json({error: "internal server error"})
                     })   
                 

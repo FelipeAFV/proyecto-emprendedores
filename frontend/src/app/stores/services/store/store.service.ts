@@ -10,52 +10,7 @@ import { StoreFilters } from '../../model/interfaces/store-filters';
 @Injectable()
 export class StoreService {
 
-  stores: Store[] = [
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '},
-    {name: 'Tienda 1', category: StoreCategory.CLOTHES, description: 'ropa camisa '}]
+  stores: Store[] = []
 
   constructor(private http: HttpClient) { }
 
@@ -78,6 +33,11 @@ export class StoreService {
     // }));
     return this.http.get<any>(`${environment.ApiUrl}/stores/searchStore?`, {
       params: {store : storeFilters.name, category: storeFilters.category} ,withCredentials: true});
+      
+    }
+    
+    uploadComment(content: string, storeName: string) {
+    return this.http.post<any>(`${environment.ApiUrl}/stores/publishComment/${storeName}`, {content: content}, {withCredentials: true});
 
   }
   

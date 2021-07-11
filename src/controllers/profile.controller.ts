@@ -14,7 +14,7 @@ class ProfileControler {
 
     async createProfile(req: Request, res: Response) {
 
-        const {role, email, firstName, lastName} = req.body;
+        const {role, email, firstName, lastName, phoneNumber} = req.body;
         console.log(req.payload.profileId);
         const currentProfile: Profile | undefined = await profileService.getByConditions({where: {id: req.payload.profileId},
         relations: ['user']});
@@ -25,7 +25,7 @@ class ProfileControler {
         const appRoleToCreate: AppRole | undefined = fromStringToAppRole(role);
         if(!appRoleToCreate) return res.status(400).json({message: 'Error in request'});
         
-        const profileCreated: Profile = await profileService.create({id: 0 ,role: appRoleToCreate, email: email, firstName: firstName, lastName: lastName, user: currentProfile.user});
+        const profileCreated: Profile = await profileService.create({id: 0 ,role: appRoleToCreate, email: email, firstName: firstName, lastName: lastName, user: currentProfile.user, phoneNumber: phoneNumber });
 
         /**Se crea la entidad asociada al perfil */
         const personService : PersonService = personserviceFactory.createPersonServiceFromRole(appRoleToCreate);

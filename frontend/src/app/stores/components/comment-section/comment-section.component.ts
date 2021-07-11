@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Comment } from '../../model/interfaces/comment';
+import { StoreService } from '../../services/store/store.service';
 
 @Component({
   selector: 'app-comment-section',
@@ -12,17 +13,26 @@ export class CommentSectionComponent implements OnInit {
   @Input()
   comments: Comment[];
 
+  @Input()
+  storeName: string;
+
   commentInput: FormControl = new FormControl('');
 
   p: number = 1;
 
-  constructor() { }
+  constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
   }
 
   addComment() {
-    this.comments.push({author: 'Felipe Figueroa', description: this.commentInput.value});
+    this.storeService.uploadComment(this.commentInput.value, this.storeName).subscribe(
+      (data) => {
+        this.comments.push(data);
+        this.commentInput.setValue('');
+        console.log(data);
+      }
+    );
     console.log(this.comments);
   }
 

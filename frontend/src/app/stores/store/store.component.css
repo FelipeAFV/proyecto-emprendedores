@@ -2,8 +2,13 @@ h1 {
     text-align: center;
 }
 
-.store-container, .button-container {
+.store-container {
     margin: 3rem; 
+}
+
+.button-container {
+    margin-left: 3rem; 
+
 }
 
 /* #store-container {
@@ -17,9 +22,13 @@ h1 {
     align-items: center;
 }
 
+#favorite-button {
+    font-size: 1rem;
+}
+
 .subcontainer {
-    margin: 1em 3em;
-    padding: 0.5em;
+    margin: 1rem 3rem;
+    padding: 0.5rem;
 }
 
 #store-name {

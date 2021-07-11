@@ -2,7 +2,15 @@
     <div id="store-container" class="card">
 
         <div class="card-header">
-            <h1>Bienvenidos a la tienda "<span id="store-name">{{store.name}}</span>"</h1>
+            <h1>Bienvenidos a la tienda "<span id="store-name">{{store.name}}</span>" 
+            
+            <span id="favorite-button" class="button-container">
+
+                <button type="button" class="my-button" (click)="addToFavorites(store.name)" >
+                    Añadir a favoritos
+                </button>
+            </span>
+    </h1>
         </div>
         <div class="card-body">
             <div class="subcontainer">
@@ -15,25 +23,40 @@
                 </div> -->
                 <!-- <button (click)="searchImage(store.name, store.img_name)" class="">Obtener imagen</button> -->
             </div>
+
             
             <div class="image-container">
                 
                 <img class="store-image" [src]="storeImage" alt="">
+            </div>
+            <div class="subcontaier">
+                <h2>Contactos</h2>
+                <ul>
+                    <li *ngFor="let manager of managers">
+                        <div *ngIf="manager.profile.phoneNumber && manager.profile.phoneNumber != ''; else noNumber">
+                            Dueño: {{manager.profile.firstName}} 
+                            <ul>
+                                <li>Contacto: {{manager.profile.phoneNumber}}</li>
+                            </ul>
+
+                        </div>
+                        <ng-template #noNumber>
+                            Dueño: {{manager.profile.firstName}}
+                            <ul>
+                                <li>Contacto: indefinido</li>
+                            </ul>
+                        </ng-template>
+
+                    </li>
+                </ul>
             </div>
         </div>
         
     </div>
 </div>
 
-<div class="button-container">
-
-    <button type="button" class="my-button" (click)="addToFavorites(store.name)" >
-        Añadir a favoritos
-    </button>
-</div>
-    
 <div class="comment-container">
 
     
-    <app-comment-section [comments]="storeComments"></app-comment-section>
+    <app-comment-section [comments]="storeComments" [storeName]="store.name"></app-comment-section>
 </div>

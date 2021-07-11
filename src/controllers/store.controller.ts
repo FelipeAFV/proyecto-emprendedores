@@ -120,7 +120,7 @@ class StoreController {
         const {storeName, imgId} = req.params;
         console.log('Store name', storeName);
         fs.exists(__dirname + '/../public/images/' + storeName + '/' + imgId, (exists) => {
-            if(!exists) res.sendStatus(500);
+            if(!exists) return res.sendStatus(500);
 
             res.status(200).sendFile(path.resolve(__dirname + '/../public/images/' + storeName + '/' + imgId));
         })

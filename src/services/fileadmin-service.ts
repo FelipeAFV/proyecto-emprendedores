@@ -9,7 +9,7 @@ class FileService{
             
 
             fs.mkdir(parenthPath, {recursive: true},(err) => {
-                    console.log('err');
+                    console.log('directory created');
             });
             
             
